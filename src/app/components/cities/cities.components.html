@@ -1,0 +1,24 @@
+<div>
+  <h1 class="mb-3 fw-light">Cities</h1>
+
+  <div class="row">
+    <div class="m-3" *ngFor="let model of data">
+      <div class="card">
+        <div class="card-body" *ngIf="model.name">
+          <span class="card-title h5">{{model.name}}</span>, {{model.sys.country}}
+          <img [src]="model.iconUrl" [title]="model.weather[0].description">
+          <div class="card-text">
+            <div class="text-capitalize text-muted">{{model.weather[0].description}}</div>
+            <div>Temperature: {{model.main.temp}}</div>
+            <div>Feels like: {{model.main.feels_like}}</div>
+          </div>
+          
+          <button class="btn btn-sm btn-outline-primary float-end mt-3">
+            <i class="fas fa-chevron-right me-1"></i>More details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

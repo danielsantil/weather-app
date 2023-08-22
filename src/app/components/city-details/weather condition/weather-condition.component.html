@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-7">
+      <h5>Conditions</h5>
+      <div class="row">
+          <div class="col">
+              <div class="ps-3">Description</div>
+              <div class="ps-3">Visibility</div>
+              <div class="ps-3">Clouds</div>
+              <div class="ps-3">Rain volume</div>
+              <div class="ps-3">Snow volume</div>
+          </div>
+          <div class="col">
+              <div class="text-capitalize">{{model.weather[0].description}}</div>
+              <div>{{model.visibility}} m</div>
+              <div>{{model.clouds && model.clouds.all + '%'}}</div>
+              <div>{{model.rain && model.rain['1h'] + ' mm'}}</div>
+              <div>{{model.snow && model.snow['1h'] + ' mm'}}</div>
+          </div>
+      </div>
+
+      <div class="row mt-4">
+          <h5 class="col">Calculation date</h5>
+          <div class="col">{{model.dt * 1000 | date:'medium'}} (UTC)</div>
+      </div>
+  </div>
+</div>

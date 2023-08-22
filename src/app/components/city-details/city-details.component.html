@@ -1,0 +1,30 @@
+<div *ngIf="model" class="col">
+  <div class="row">
+    <span>
+      <a class="text-primary px-2" style="cursor: pointer;" (click)="goToDashboard()">
+        <i class="fas fa-xl fa-chevron-left"></i>
+      </a>
+      <span class="align-middle">
+        <span class="h1 fw-light ms-4">{{model.name}}</span>
+        <span class="h4 fw-light ms-2">{{model.sys.country}}</span>
+      </span>
+      <img [src]="model.iconUrl" [title]="model.weather[0].description">
+    </span>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <nav class="nav nav-tabs nav-fill">
+        <a *ngFor="let tab of tabs"
+        class="nav-item nav-link btn text-primary"
+        [ngClass]="{ 'active text-dark': activeTab === tab }" (click)="showTab(tab)">{{tab.name}}</a>
+      </nav>
+
+      <div class="mt-4 mx-2">
+        <weather-condition *ngIf="activeTab.id == 1" [model]="model"></weather-condition>
+        <temperature *ngIf="activeTab.id == 2" [model]="model"></temperature>
+        <city-information *ngIf="activeTab.id == 3" [model]="model"></city-information>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'cities-dashboard',
-  templateUrl: './cities.components.html'
+  templateUrl: './cities.component.html'
 })
 export class CitiesComponent implements OnInit {
   data: Weather[];
@@ -29,10 +29,7 @@ export class CitiesComponent implements OnInit {
     // go through each added city and request weather data to api. this ensures array order is kept.
     this.data.forEach((city, index) => {
       this.weatherService.getById(city.id).subscribe({
-        next: (response: Weather) => {
-          response.iconUrl = `${environment.iconsUrl}/${response.weather[0].icon}.png`;
-          this.data.splice(index, 1, response);
-        },
+        next: (response: Weather) => this.data.splice(index, 1, response),
         error: console.log
       });
     });

@@ -37,6 +37,7 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.paramMap.get('id')!;
     this.getData();
+    this.activeTab = this.tabs[0];
 
     this.$settingsChanged = this.settingsService.settingsChanged.subscribe({
       next: _ => this.getData()
@@ -47,7 +48,7 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
     this.weatherService.getById(this.cityId).subscribe({
       next: (response) => {
         this.model = response;
-        this.showTab(this.tabs[0]);
+        this.showTab(this.activeTab);
       }
     })
   }

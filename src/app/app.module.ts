@@ -13,6 +13,7 @@ import { WeatherConditionComponent } from './components/city-details/weather con
 import { TimezonePipe } from './pipes/timezone.pipe';
 import { TemperaturePipe } from './pipes/temperature.pipe';
 import { DynamicComponentDirective } from './directives/dynamic-component.directive';
+import { httpInterceptorProviders } from './interceptors/interceptors';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { DynamicComponentDirective } from './directives/dynamic-component.direct
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

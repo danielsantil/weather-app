@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, map } from "rxjs";
+import { Observable, map } from "rxjs";
 import { Weather } from "src/app/models/weather";
 import { environment } from "src/environments/environment";
 import { SettingsService } from "../settings/settings.service";
@@ -10,12 +10,11 @@ import { SettingsService } from "../settings/settings.service";
 })
 export class WeatherService {
   private apiUrl = environment.openWeatherApiUrl;
-  private apiKey = environment.openWeatherApiKey;
 
   constructor(private http: HttpClient, private settingsService: SettingsService) { }
 
   getById(cityId: number): Observable<Weather> {
-    let url = this.url(`${this.apiUrl}/weather?id=${cityId}`);
+    let url = `${this.apiUrl}/weather?id=${cityId}`;
     url += '&units=' + this.settingsService.getTemperatureUnit().value;
 
     return this.http.get<Weather>(url).pipe(
@@ -23,10 +22,6 @@ export class WeatherService {
         this.setIcon(response);
         return response;
       }));
-  }
-
-  url(url: string): string {
-    return url + '&appid=' + this.apiKey;
   }
 
   setIcon(response: Weather): void {

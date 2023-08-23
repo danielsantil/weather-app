@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CityInformationComponent } from './components/city-details/city-information/city-information.component';
 import { TemperatureComponent } from './components/city-details/temperature/temperature.component';
 import { WeatherConditionComponent } from './components/city-details/weather condition/weather-condition.component';
+import { TimezonePipe } from './pipes/timezone.pipe';
+import { TemperaturePipe } from './pipes/temperature.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { WeatherConditionComponent } from './components/city-details/weather con
     CityInformationComponent,
     TemperatureComponent,
     WeatherConditionComponent,
-    SettingsComponent
+    SettingsComponent,
+    TimezonePipe,
+    TemperaturePipe
   ],
   imports: [
     BrowserModule,

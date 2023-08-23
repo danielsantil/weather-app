@@ -12,7 +12,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   $citiesCount: Subscription;
   currentUnit: WeatherUnit;
   citiesCount: number;
-  totalCountArray = new Array(10); // total count to display as dropdown options
+  totalCountArray = new Array(10); // array capacity equals total count to display as dropdown options
   
   units = WeatherUnit;
 

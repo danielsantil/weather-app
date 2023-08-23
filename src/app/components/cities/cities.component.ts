@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Weather, WeatherUnit } from "src/app/models/weather";
+import { Weather } from "src/app/models/weather";
 import { MockServerService } from "src/app/services/mock-server/mock-server.service";
 import { WeatherService } from "src/app/services/open-weather/weather.service";
 import { SettingsService } from "src/app/services/settings/settings.service";
@@ -11,8 +11,6 @@ import { SettingsService } from "src/app/services/settings/settings.service";
 })
 export class CitiesComponent implements OnInit, OnDestroy {
   data: Weather[];
-  currentUnit: WeatherUnit;
-  $currentUnit: Subscription;
   $settingsChanged: Subscription;
   $citiesCount: Subscription;
   citiesCount: number;
@@ -24,10 +22,6 @@ export class CitiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.$currentUnit = this.settingsService.currentUnit.subscribe({
-      next: value => this.currentUnit = value
-    });
-
     this.$settingsChanged = this.settingsService.settingsChanged.subscribe({
       next: _ => this.refresh()
     });
@@ -60,7 +54,6 @@ export class CitiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$currentUnit.unsubscribe();
     this.$citiesCount.unsubscribe();
     this.$settingsChanged.unsubscribe();
   }

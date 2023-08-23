@@ -14,8 +14,8 @@
           <img [src]="model.iconUrl" [title]="model.weather[0].description">
           <div class="card-text">
             <div class="text-capitalize text-muted">{{model.weather[0].description}}</div>
-            <div>Temperature: {{model.main.temp}} {{currentUnit.label}}</div>
-            <div>Feels like: {{model.main.feels_like}} {{currentUnit.label}}</div>
+            <div>Temperature: {{model.main.temp | temperature}}</div>
+            <div>Feels like: {{model.main.feels_like | temperature}}</div>
           </div>
           
           <button class="btn btn-sm btn-outline-primary float-end mt-3"

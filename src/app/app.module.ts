@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { CitiesComponent } from './components/cities/cities.component';
 import { CityDetailsComponent } from './components/city-details/city-details.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CityInformationComponent } from './components/city-details/city-information/city-information.component';
 import { TemperatureComponent } from './components/city-details/temperature/temperature.component';
@@ -17,7 +18,8 @@ import { WeatherConditionComponent } from './components/city-details/weather con
     CityDetailsComponent,
     CityInformationComponent,
     TemperatureComponent,
-    WeatherConditionComponent
+    WeatherConditionComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

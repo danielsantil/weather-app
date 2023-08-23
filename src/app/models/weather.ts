@@ -89,3 +89,15 @@ export enum Unit {
   C = 'metric',
   F = 'imperial'
 }
+
+export class WeatherUnit {
+  static readonly C = new WeatherUnit(Unit.C, '°C');
+  static readonly F = new WeatherUnit(Unit.F, '°F');
+  static readonly K = new WeatherUnit(Unit.K, 'K');
+
+  constructor(public readonly value: Unit, public readonly label: string) { }
+
+  static asList(): WeatherUnit[] {
+    return Object.values(this);
+  }
+}

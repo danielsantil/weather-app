@@ -11,12 +11,12 @@
               <div class="ps-3">Max temperature</div>
           </div>
           <div class="col">
-              <div>{{model.main.temp}}</div>
-              <div>{{model.main.feels_like}}</div>
+              <div>{{model.main.temp}} {{currentUnit.label}}</div>
+              <div>{{model.main.feels_like}} {{currentUnit.label}}</div>
               <div>{{model.main.pressure}} hPa</div>
               <div>{{model.main.humidity}}%</div>
-              <div>{{model.main.temp_min}}</div>
-              <div>{{model.main.temp_max}}</div>
+              <div>{{model.main.temp_min}} {{currentUnit.label}}</div>
+              <div>{{model.main.temp_max}} {{currentUnit.label}}</div>
           </div>
       </div>
   </div>

@@ -25,14 +25,19 @@
       "country": "CO"
   },
   {
-      "id": 2747373,
-      "name": "The Hague",
-      "country": "NL"
+      "id": 5391959,
+      "name": "San Francisco",
+      "country": "US"
   },
   {
       "id": 3164603,
       "name": "Venice",
       "country": "IT"
+  },
+  {
+      "id": 2747373,
+      "name": "The Hague",
+      "country": "NL"
   },
   {
       "id": 1819729,
@@ -53,11 +58,6 @@
       "id": 3169070,
       "name": "Rome",
       "country": "IT"
-  },
-  {
-      "id": 5391959,
-      "name": "San Francisco",
-      "country": "US"
   },
   {
       "id": 3054638,

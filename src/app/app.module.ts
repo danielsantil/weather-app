@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 
@@ -14,6 +14,7 @@ import { TimezonePipe } from './pipes/timezone.pipe';
 import { TemperaturePipe } from './pipes/temperature.pipe';
 import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 import { httpInterceptorProviders } from './interceptors/interceptors';
+import { GlobalErrorHandler } from './handlers/global-error-handler';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import { httpInterceptorProviders } from './interceptors/interceptors';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

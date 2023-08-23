@@ -12,6 +12,7 @@ import { TemperatureComponent } from './components/city-details/temperature/temp
 import { WeatherConditionComponent } from './components/city-details/weather condition/weather-condition.component';
 import { TimezonePipe } from './pipes/timezone.pipe';
 import { TemperaturePipe } from './pipes/temperature.pipe';
+import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TemperaturePipe } from './pipes/temperature.pipe';
     WeatherConditionComponent,
     SettingsComponent,
     TimezonePipe,
-    TemperaturePipe
+    TemperaturePipe,
+    DynamicComponentDirective
   ],
   imports: [
     BrowserModule,

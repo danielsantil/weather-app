@@ -1,5 +1,5 @@
-<div *ngIf="model" class="col">
-  <div class="row">
+<div class="col">
+  <div *ngIf="model" class="row">
     <span>
       <a class="text-primary px-2" style="cursor: pointer;" (click)="goToDashboard()">
         <i class="fas fa-xl fa-chevron-left"></i>
@@ -21,9 +21,7 @@
       </nav>
 
       <div class="mt-4 mx-2">
-        <weather-condition *ngIf="activeTab.id == 1" [model]="model"></weather-condition>
-        <temperature *ngIf="activeTab.id == 2" [model]="model"></temperature>
-        <city-information *ngIf="activeTab.id == 3" [model]="model"></city-information>
+        <ng-template dynamicComponent></ng-template>
       </div>
     </div>
   </div>

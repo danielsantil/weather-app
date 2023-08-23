@@ -1,4 +1,7 @@
+import { Type } from "@angular/core";
+import { WeatherDetailsBaseComponent } from "../components/city-details/weather-details-base.component";
+
 export class CityDetailsTab {
-  id: number;
   name: string;
+  component: Type<WeatherDetailsBaseComponent>;
 }

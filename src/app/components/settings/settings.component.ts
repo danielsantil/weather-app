@@ -8,15 +8,23 @@ import { SettingsService } from "src/app/services/settings/settings.service";
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  units = WeatherUnit;
-  currentUnit: WeatherUnit;
   $currentUnit: Subscription;
+  $citiesCount: Subscription;
+  currentUnit: WeatherUnit;
+  citiesCount: number;
+  totalCountArray = new Array(10); // total count to display as dropdown options
+  
+  units = WeatherUnit;
 
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     this.$currentUnit = this.settingsService.currentUnit.subscribe({
       next: value => this.currentUnit = value
+    });
+
+    this.$citiesCount = this.settingsService.citiesCount.subscribe({
+      next: value => this.citiesCount = value
     });
   }
 
@@ -25,7 +33,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.settingsService.setTemperatureUnit(unit);
   }
 
+  setCitiesCount(count: number): void {
+    this.citiesCount = count;
+    this.settingsService.setCitiesCount(count);
+  }
+
   ngOnDestroy(): void {
     this.$currentUnit.unsubscribe();
+    this.$citiesCount.unsubscribe();
   }
 }

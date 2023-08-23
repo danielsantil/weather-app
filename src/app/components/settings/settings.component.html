@@ -2,15 +2,36 @@
   <h1 class="mb-3 fw-light">Settings</h1>
   
   <div class="col my-4">
-    <div class="mb-2 h5">Current unit</div>
-    <div class="list-group list-group-horizontal col-4 text-center">
-      <button *ngFor="let unit of units.asList()"
-              class="list-group-item list-group-item-action"
-              [class.active]="currentUnit === unit"
-              [disabled]="currentUnit === unit"
-              (click)="setUnit(unit)" [title]="unit.value">
-        {{unit.label}}
-      </button>
+    <div>
+      <div class="h5">Current unit:</div>
+      <div class="list-group list-group-horizontal col-4 text-center">
+        <button *ngFor="let unit of units.asList()"
+          class="list-group-item list-group-item-action"
+          [class.active]="currentUnit === unit"
+          [disabled]="currentUnit === unit"
+          (click)="setUnit(unit)" [title]="unit.value">
+          {{unit.label}}
+        </button>
+      </div>
+
+      <div>
+        <div class="mt-4 h5">Total cities to display:</div>
+        <div class="dropdown">
+          <a class="btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown">
+            {{citiesCount}}
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a *ngFor="let element of totalCountArray; let num = index"
+              class="dropdown-item" [class.disabled]="num + 1 === citiesCount"
+              (click)="setCitiesCount(num + 1)">
+                {{num + 1}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 

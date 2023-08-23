@@ -14,6 +14,8 @@ export class CitiesComponent implements OnInit, OnDestroy {
   currentUnit: WeatherUnit;
   $currentUnit: Subscription;
   $settingsChanged: Subscription;
+  $citiesCount: Subscription;
+  citiesCount: number;
 
   constructor(
     private mockServer: MockServerService,
@@ -22,7 +24,6 @@ export class CitiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getData();
     this.$currentUnit = this.settingsService.currentUnit.subscribe({
       next: value => this.currentUnit = value
     });
@@ -30,11 +31,18 @@ export class CitiesComponent implements OnInit, OnDestroy {
     this.$settingsChanged = this.settingsService.settingsChanged.subscribe({
       next: _ => this.refresh()
     });
+
+    this.$citiesCount = this.settingsService.citiesCount.subscribe({
+      next: value => {
+        this.citiesCount = value;
+        this.refresh();
+      }
+    });
   }
 
   async getData() {
     // first, we map all cities to an initial array of weather entries.
-    this.data = (await this.mockServer.getCities(6)).map(entry => { 
+    this.data = (await this.mockServer.getCities(this.citiesCount)).map(entry => { 
       return new Weather(entry.id)
     });
 
@@ -53,6 +61,7 @@ export class CitiesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.$currentUnit.unsubscribe();
+    this.$citiesCount.unsubscribe();
     this.$settingsChanged.unsubscribe();
   }
 }

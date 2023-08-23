@@ -6,13 +6,17 @@ import { WeatherUnit } from "src/app/models/weather";
   providedIn: 'root'
 })
 export class SettingsService {
+  // Settings changed subject/observable
+  private settingsChangedSubject = new Subject<void>();
+  settingsChanged = this.settingsChangedSubject.asObservable();
+
   // Temperature units subject/observable
   private unitsSubject = new BehaviorSubject<WeatherUnit>(WeatherUnit.C);
   currentUnit = this.unitsSubject.asObservable();
 
-  // Settings changed subject/observable
-  private settingsChangedSubject = new Subject<void>();
-  settingsChanged = this.settingsChangedSubject.asObservable();
+  // Cities count subject/observable
+  private citiesCountSubject = new BehaviorSubject<number>(6);
+  citiesCount = this.citiesCountSubject.asObservable();
 
   getTemperatureUnit(): WeatherUnit {
     return this.unitsSubject.value;
@@ -20,6 +24,11 @@ export class SettingsService {
 
   setTemperatureUnit(unit: WeatherUnit): void {
     this.unitsSubject.next(unit);
+    this.notifySettingsChange();
+  }
+
+  setCitiesCount(count: number): void {
+    this.citiesCountSubject.next(count);
     this.notifySettingsChange();
   }
 

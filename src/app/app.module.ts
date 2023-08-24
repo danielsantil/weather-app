@@ -15,6 +15,8 @@ import { TemperaturePipe } from './pipes/temperature.pipe';
 import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 import { httpInterceptorProviders } from './interceptors/interceptors';
 import { GlobalErrorHandler } from './handlers/global-error-handler';
+import { ForecastComponent } from './components/city-details/forecast/forecast.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { GlobalErrorHandler } from './handlers/global-error-handler';
     SettingsComponent,
     TimezonePipe,
     TemperaturePipe,
+    ForecastComponent,
     DynamicComponentDirective
   ],
   imports: [
@@ -36,7 +39,8 @@ import { GlobalErrorHandler } from './handlers/global-error-handler';
   ],
   providers: [
     httpInterceptorProviders,
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

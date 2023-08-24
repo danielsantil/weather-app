@@ -42,7 +42,7 @@ export class CitiesComponent implements OnInit, OnDestroy {
 
     // go through each added city and request weather data to api. this ensures array order is kept.
     this.data.forEach((city, index) => {
-      this.weatherService.getById(city.id).subscribe({
+      this.weatherService.getWeatherByCity(city.id).subscribe({
         next: (response: Weather) => this.data.splice(index, 1, response),
         error: console.log
       });

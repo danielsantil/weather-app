@@ -4,6 +4,7 @@ import { Observable, map } from "rxjs";
 import { Weather } from "src/app/models/weather";
 import { environment } from "src/environments/environment";
 import { SettingsService } from "../settings/settings.service";
+import { ForecastResponse } from "src/app/models/forecast";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class WeatherService {
 
   constructor(private http: HttpClient, private settingsService: SettingsService) { }
 
-  getById(cityId: number): Observable<Weather> {
+  getWeatherByCity(cityId: number): Observable<Weather> {
     let url = `${this.apiUrl}/weather?id=${cityId}`;
     url += '&units=' + this.settingsService.getTemperatureUnit().value;
 
@@ -22,6 +23,14 @@ export class WeatherService {
         this.setIcon(response);
         return response;
       }));
+  }
+
+  getForecast(cityId: number, count: number): Observable<ForecastResponse> {
+    let url = `${this.apiUrl}/forecast?id=${cityId}`;
+    url += '&units=' + this.settingsService.getTemperatureUnit().value;
+    url += '&cnt=' + count;
+
+    return this.http.get<ForecastResponse>(url);
   }
 
   setIcon(response: Weather): void {

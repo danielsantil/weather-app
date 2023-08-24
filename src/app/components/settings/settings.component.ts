@@ -10,9 +10,12 @@ import { SettingsService } from "src/app/services/settings/settings.service";
 export class SettingsComponent implements OnInit, OnDestroy {
   $currentUnit: Subscription;
   $citiesCount: Subscription;
+  $forecastCount: Subscription;
   currentUnit: WeatherUnit;
+  totalCountArray = new Array(10); // array capacity equals total count to display as cities options
   citiesCount: number;
-  totalCountArray = new Array(10); // array capacity equals total count to display as dropdown options
+  forecastCountArray = [5, 10, 20, 30, 40];
+  forecastCount: number;
   
   units = WeatherUnit;
 
@@ -26,20 +29,27 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.$citiesCount = this.settingsService.citiesCount.subscribe({
       next: value => this.citiesCount = value
     });
+
+    this.$forecastCount = this.settingsService.forecastCount.subscribe({
+      next: value => this.forecastCount = value
+    });
   }
 
   setUnit(unit: WeatherUnit): void {
-    this.currentUnit = unit;
     this.settingsService.setTemperatureUnit(unit);
   }
 
   setCitiesCount(count: number): void {
-    this.citiesCount = count;
     this.settingsService.setCitiesCount(count);
+  }
+
+  setForecastCount(count: number): void {
+    this.settingsService.setForecastCount(count);
   }
 
   ngOnDestroy(): void {
     this.$currentUnit.unsubscribe();
     this.$citiesCount.unsubscribe();
+    this.$forecastCount.unsubscribe();
   }
 }

@@ -18,6 +18,10 @@ export class SettingsService {
   private citiesCountSubject = new BehaviorSubject<number>(6);
   citiesCount = this.citiesCountSubject.asObservable();
 
+  // Forecast count subject/observable
+  private forecastCountSubject = new BehaviorSubject<number>(10);
+  forecastCount = this.forecastCountSubject.asObservable();
+
   getTemperatureUnit(): WeatherUnit {
     return this.unitsSubject.value;
   }
@@ -29,6 +33,15 @@ export class SettingsService {
 
   setCitiesCount(count: number): void {
     this.citiesCountSubject.next(count);
+    this.notifySettingsChange();
+  }
+
+  getForecastCount(): number {
+    return this.forecastCountSubject.value;
+  }
+
+  setForecastCount(count: number): void {
+    this.forecastCountSubject.next(count);
     this.notifySettingsChange();
   }
 

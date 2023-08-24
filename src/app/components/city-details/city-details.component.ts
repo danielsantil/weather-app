@@ -10,6 +10,7 @@ import { WeatherDetailsBaseComponent } from "./weather-details-base.component";
 import { WeatherConditionComponent } from "./weather condition/weather-condition.component";
 import { TemperatureComponent } from "./temperature/temperature.component";
 import { CityInformationComponent } from "./city-information/city-information.component";
+import { ForecastComponent } from "./forecast/forecast.component";
 
 @Component({
   selector: 'city-details',
@@ -19,6 +20,7 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   @ViewChild(DynamicComponentDirective, { static: false }) dynamicComponent: DynamicComponentDirective;
   model: Weather;
   tabs: CityDetailsTab[] = [
+    { name: 'Forecast', component: ForecastComponent },
     { name: 'Weather Condition', component: WeatherConditionComponent },
     { name: 'Temperature', component: TemperatureComponent },
     { name: 'City Information', component: CityInformationComponent },
@@ -45,7 +47,7 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   }
 
   getData(): void {
-    this.weatherService.getById(this.cityId).subscribe({
+    this.weatherService.getWeatherByCity(this.cityId).subscribe({
       next: (response) => {
         this.model = response;
         this.showTab(this.activeTab);

@@ -20,9 +20,9 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   @ViewChild(DynamicComponentDirective, { static: false }) dynamicComponent: DynamicComponentDirective;
   model: Weather;
   tabs: CityDetailsTab[] = [
-    { name: 'Forecast', component: ForecastComponent },
-    { name: 'Weather Condition', component: WeatherConditionComponent },
     { name: 'Temperature', component: TemperatureComponent },
+    { name: 'Weather Condition', component: WeatherConditionComponent },
+    { name: 'Forecast', component: ForecastComponent },
     { name: 'City Information', component: CityInformationComponent },
   ];
   cityId: number;
